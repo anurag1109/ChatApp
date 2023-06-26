@@ -5,11 +5,10 @@ const app = express();
 app.use(express.json());
 
 require("dotenv").config();
+const { connection } = require("./configs/db");
 
 const cors = require("cors");
 app.use(cors());
-
-const { connection } = require("./configs/db");
 
 const router = require("./routes/authRoutes");
 

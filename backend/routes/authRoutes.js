@@ -9,12 +9,12 @@ const jwt = require("jsonwebtoken");
 const { usersmodel } = require("../models/Model");
 
 router.post("/register", async (req, res) => {
-    const { username, email, password } = req.body;
-    // console.log(username);
+  const { username, email, password } = req.body;
+  console.log(username);
   //checking if user already exist?
   try {
     if (await usersmodel.findOne({ email: email })) {
-      res.send({ Alert: "User already registered" });
+      res.status(400).send({ message: "User already registered" });
     } else {
       const hashpassword = await bcrypt.hash(password, 15);
       const hasheduser = new usersmodel({
@@ -23,10 +23,10 @@ router.post("/register", async (req, res) => {
         password: hashpassword,
       });
       await hasheduser.save();
-      res.send("user has been added successfully");
+      res.status(200).send("user has been added successfully");
     }
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).send(err.message);
   }
 });
 router.post("/login", async (req, res) => {
@@ -42,10 +42,9 @@ router.post("/login", async (req, res) => {
         {
           userID: isUserExist._id,
         },
-        "userkey",
-        { expiresIn: "1h" }
+        "userkey"
       );
-      res.send({ username: isUserExist.username, token: token });
+      res.status(200).send({ username: isUserExist.username, token: token });
     }
   } catch (err) {
     res.status(400).send(err);

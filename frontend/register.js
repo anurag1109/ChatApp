@@ -23,9 +23,15 @@ signupForm.addEventListener("submit", async (e) => {
       },
       body: JSON.stringify(registrationData),
     });
-    const res = await data.json();
-    console.log(res);
+      const res = await data.json();
+      console.log(res)
+      console.log(data)
+      if (data.ok) {
+        
+    } else {
+      throw new Error(res.message);
+    }
   } catch (err) {
-    console.log("err", err);
+    alert("err", err.message);
   }
 });

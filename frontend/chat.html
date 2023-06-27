@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+    <title>Chat</title>
+    <link rel="stylesheet" href="./chat.css">
+</head>
+
+<body>
+    <div id="room">Room :</div>
+    <div class="chat-box">
+        <div class="alluserbox all">
+            <div class="useronline">Users online</div>
+            <div id="allusers"></div>
+        </div>
+        <div class="alluserchatbox all">
+            <div id="container"></div>
+            <div class="chatinput">
+                <!-- <div id="message-container"></div> -->
+                <input type="text" id="message">
+                <button id="btn" type="button" name="button" onclick="sendMessage()">Send</button>
+
+            </div>
+        </div>
+        <!-- <button onclick="leaveroom()">Leave room</button> -->
+    </div>
+</body>
+
+</html>
+<script src="./chat.js"></script>
